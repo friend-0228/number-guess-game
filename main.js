@@ -21,6 +21,9 @@ let history = [];
 
 playButton.addEventListener("click",play)
 resetButton.addEventListener("click", reset)
+userInput.addEventListener("focus", function() {
+    userInput.value = "";
+});
 
 
 function pickRandomNum() {
@@ -53,6 +56,7 @@ function play() {
         console.log("DOWN!")
     } else {
             resultArea.textContent = "정답입니다!"
+            gameOver = true;
         console.log("정답입니다!")
     }
 
@@ -73,6 +77,11 @@ function reset() {
     userInput.value = "";
     // 새로운 번호가 생성된다
     pickRandomNum();
+    // 정답 맞출 기회도 같이 리셋된다
+    chances = 5
+    chanceArea.textContent = `남은 기회:${chances}번`;
+    // history도 리셋
+    history = [];
 
     resultArea.textContent = "결과값이 나옵니다."
     
